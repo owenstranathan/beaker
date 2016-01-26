@@ -972,7 +972,7 @@ Elaborator::elaborate(Call_expr* e)
       on_call_error(conv, args, parms);
 
     // Check for value conversion nodes
-    // This is the case for lambda initialized variables and parameters
+    // This is the case for lambda initialized variables
     if(is<Value_conv>(f)){
       f = cast<Value_conv>(f)->first;
       auto decl = cast<Decl_expr>(f)->declaration();
