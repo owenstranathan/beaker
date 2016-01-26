@@ -439,21 +439,21 @@ Elaborator::elaborate(Decl_expr* e)
   return e;
 }
 
+
 Expr*
 Elaborator::elaborate(Lambda_expr* e)
 {
+  // Create the new lambda expression.
   Function_decl* f_decl = new Function_decl(e->symbol(), e->type(), e->parameters(), e->body());
-  Decl* d = elaborate_decl(f_decl);
-  d = elaborate_def(f_decl);
+  elaborate_decl(f_decl);
+  elaborate_def(f_decl);
 
-  // declare(f_decl);
-
+  // Build the new lambda expression.
   Decl_expr* d_expr = new Decl_expr(f_decl->type()->ref(), f_decl);
-
   lambda_decls_[d_expr] = f_decl;
-
   return d_expr;
 }
+
 
 namespace
 {
